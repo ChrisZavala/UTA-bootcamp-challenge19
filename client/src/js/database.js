@@ -40,6 +40,23 @@ console.log('Saved content to the database', result);
 export const getDb = async () => {
 console.error('getDb not implemented');
 
+//create a connection to the database and version.
+const contactDb = await openDB('jate', 1);
+
+//Create a transaction on the contact database with readwrite access.
+const tx = contactDb.transaction('jate','readonly');
+
+//Access the object store.
+const store = tx.objectStore('jate');
+
+//Use the getAll() method on the object store get all the content.
+const request = store.getAll();
+
+//Get the confirmation of the request.
+const result = await request;
+console.log('result.value', result);
+return result?.value;
+
 };
 
 initdb();
