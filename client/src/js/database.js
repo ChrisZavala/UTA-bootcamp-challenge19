@@ -20,13 +20,13 @@ console.error('putDb not implemented');
 const contactDb = await openDB('jate', 1);
 
 //Create a transaction on the contact database with readwrite access.
-const tx = contactDb.transaction('jate','readwrite');
+const tx = contactDb.transaction('jate', 'readwrite');
 
 //Access the object store.
 const store = tx.objectStore('jate');
 
 //Add the content to the object store.
-const request = store.add({ id: 1, value: content});
+const request = store.put({ id: 1, value: content });
 
 //Get the confirmation of the request.
 const result = await request;
